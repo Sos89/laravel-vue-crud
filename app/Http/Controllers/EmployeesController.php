@@ -57,7 +57,7 @@ class EmployeesController extends Controller
     {
         try {
           $query = Employee::select('name', 'department', 'section', 'email');
-          if ($request-searchQuery){
+          if ($request->searchQuery){
               $query->where(function ($q) use ($request) {
                   $q->orWhere('name', 'like', '%'.$request->searchQuery.'%');
               });
@@ -81,9 +81,8 @@ class EmployeesController extends Controller
         return view('employee.form')->with($data);
     }
 
-    public function getEmployeeDataById(Request $request, $id)
+    public function getEmployeeDataById($id)
     {
-
         $employeeData = Employee::find($id);
 
         return response()->json([

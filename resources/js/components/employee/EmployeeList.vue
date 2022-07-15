@@ -156,7 +156,7 @@ export default {
             background: 'rgba(255, 255, 255, 0.85)'
         });
 
-        this.$store.dispatch('getEmployeesData', {searchQuery: this.search });
+        this.$store.dispatch('getEmployeesData', {searchQuery: this.search })
         loading.close();
     },
     methods: {
