@@ -54,8 +54,9 @@ class EmployeesController extends Controller
      * Getting gets data of pages
      */
     public function getEmployeeData(Request $request){
+
         try {
-            $query = Employee::select('name', 'department', 'section', 'email');
+            $query = Employee::select('id','name', 'department', 'section', 'email');
             if ($request->searchQuery){
                 $query->where(function ($q) use ($request) {
                     $q->orWhere('name', 'like', '%'.$request->searchQuery.'%');
