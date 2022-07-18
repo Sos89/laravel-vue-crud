@@ -7047,7 +7047,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         prop: 'name',
         label: 'Name',
         minWatch: 80,
-        sortable: true,
+        sortable: false,
         hidden: true,
         align: "center",
         fixed: true
@@ -7074,13 +7074,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         sortable: false,
         hidden: true,
         align: "center",
-        fixed: true
+        fixed: true,
+        type: 'email'
       }]
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
-    tableData: "tableData"
-  })),
   watch: {
     search: function search(keyword) {
       this.$store.dispatch('getEmployeesData', {
@@ -7100,6 +7098,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     loading.close();
   },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
+    tableData: "tableData"
+  })),
   methods: {
     editEmployee: function editEmployee(index, row) {
       window.location.href = "/edit-employee/" + row.id + '/edit';
@@ -7392,7 +7393,8 @@ var render = function render() {
         "min-width": column.minWatch,
         sortable: column.sortable,
         align: column.align,
-        "header-align": column.align
+        "header-align": column.align,
+        type: column.type
       }
     });
   }), _vm._v(" "), _c("el-table-column", {
@@ -7592,7 +7594,7 @@ var getEmployeesData = function getEmployeesData(_ref2, payload) {
 var updateEmployee = function updateEmployee(_ref3, payload) {
   var commit = _ref3.commit;
   displayLoading('Update employee...');
-  axios.put("/update-employee/".concat(payload.id), payload.from).then(function (res) {
+  axios.put("/update-employee/".concat(payload.id), payload.form).then(function (res) {
     vue__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.$notify({
       title: 'Success',
       message: 'Employee Updated Successfully',

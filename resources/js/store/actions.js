@@ -40,7 +40,7 @@ export const getEmployeesData = ( { commit }, payload ) => {
 
 export const updateEmployee = ({commit}, payload) => {
     displayLoading('Update employee...');
-    axios.put(`/update-employee/${payload.id}`, payload.from ).then(res => {
+    axios.put(`/update-employee/${payload.id}`, payload.form ).then(res => {
         Vue.prototype.$notify({
             title: 'Success',
             message: 'Employee Updated Successfully',

@@ -53,22 +53,24 @@ class EmployeesController extends Controller
      *
      * Getting gets data of pages
      */
-    public function getEmployeeData(Request $request)
-    {
+    public function getEmployeeData(Request $request){
         try {
-          $query = Employee::select('name', 'department', 'section', 'email');
-          if ($request->searchQuery){
-              $query->where(function ($q) use ($request) {
-                  $q->orWhere('name', 'like', '%'.$request->searchQuery.'%');
-              });
-          }
+            $query = Employee::select('name', 'department', 'section', 'email');
+            if ($request->searchQuery){
+                $query->where(function ($q) use ($request) {
+                    $q->orWhere('name', 'like', '%'.$request->searchQuery.'%');
+                });
+            }
             $employeeData = $query->get();
-
             return $employeeData;
-        }
-        catch (Exception $e){
+        }catch (Exception $e){
             dd($e);
         }
+//        try {
+//            return Employee::all();
+//        }catch (Exception $e){
+//            dd($e);
+//        }
     }
 
     public function edit($id)
@@ -77,14 +79,12 @@ class EmployeesController extends Controller
             'scope' => 'edit',
             'id' => $id,
         ];
-
         return view('employee.form')->with($data);
     }
 
     public function getEmployeeDataById($id)
     {
         $employeeData = Employee::find($id);
-
         return response()->json([
             'status' => 200,
             'data' => $employeeData

@@ -37,6 +37,7 @@
                                         :sortable="column.sortable"
                                         :align="column.align"
                                         :header-align="column.align"
+                                        :type="column.type"
                                     >
 
                                     </el-table-column>
@@ -103,7 +104,7 @@ export default {
                     prop: 'name',
                     label: 'Name',
                     minWatch: 80,
-                    sortable: true,
+                    sortable: false,
                     hidden: true,
                     align: "center",
                     fixed: true
@@ -133,15 +134,11 @@ export default {
                     sortable: false,
                     hidden: true,
                     align: "center",
-                    fixed: true
+                    fixed: true,
+                    type: 'email'
                 },
             ]
         }
-    },
-    computed:{
-        ...mapGetters({
-            tableData:"tableData"
-        })
     },
     watch: {
         search: function (keyword) {
@@ -158,6 +155,11 @@ export default {
 
         this.$store.dispatch('getEmployeesData', {searchQuery: this.search })
         loading.close();
+    },
+    computed:{
+        ...mapGetters({
+            tableData:"tableData"
+        })
     },
     methods: {
         editEmployee(index, row){
