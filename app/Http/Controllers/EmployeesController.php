@@ -67,11 +67,6 @@ class EmployeesController extends Controller
         }catch (Exception $e){
             dd($e);
         }
-//        try {
-//            return Employee::all();
-//        }catch (Exception $e){
-//            dd($e);
-//        }
     }
 
     public function edit($id)
